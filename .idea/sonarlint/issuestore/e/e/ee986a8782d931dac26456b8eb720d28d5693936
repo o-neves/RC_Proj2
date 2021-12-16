@@ -1,0 +1,17 @@
+
+[	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(ÚºµŒ
+n	java:S116"TRename this field "BlockSize" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÿÁñøÿÿÿÿ
+n
+java:S3008"SRename this field "RECEIVER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À³¿Çúÿÿÿÿ
+p
+java:S3008"ZRename this field "DEFAULT_TIMEOUT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æüû
+A
+java:S1659",Declare "lastPacketSeqN" on a separate line.(Üè¨f
+7
+java:S1116"Remove this empty statement.(ôŸìúÿÿÿÿ
+a	java:S128N"LEnd this switch case with an unconditional break, return or throw statement.(ı›öÕ
+k	java:S117$"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÿ™ıÿÿÿÿ
+0
+java:S1220""Move this file to a named package.
+[
+java:S2184d"FCast one of the operands of this multiplication operation to a "long".(’üÂ+
