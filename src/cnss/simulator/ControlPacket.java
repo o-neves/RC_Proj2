@@ -1,5 +1,6 @@
 package cnss.simulator;
 
+
 /**
  * The <code>ControlPacket</code> constructor. This is a subclass of the packet
  * super class and merely sets the packet type to CONTROL.
