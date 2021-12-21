@@ -55,20 +55,15 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
 
         state = State.BEGINNING;
         lastPacketSeqN = (int) Math.ceil(file.length() / (double) BlockSize);
+        System.out.println(lastPacketSeqN);
 
         lastPacketSent = -1;
         return 1;
     }
 
     public void on_clock_tick(int now) {
-        boolean canSend = dataNotConfirmed.size() < windowSize;
+        boolean canSend = dataNotConfirmed.size() < windowSize || lastPacketSeqN > nextPacketSeqN;
 
-        /*boolean found = false;
-        dataNotConfirmed.forEach((seqN,time) -> {
-            if(now - time > TIMEOUT) {nextPacketSeqN = seqN;
-                dataNotConfirmed.clear();
-            }
-        });*/
 
         for (Map.Entry<Integer, Integer> entry : dataNotConfirmed.entrySet()) {
             int seqN = entry.getKey();
