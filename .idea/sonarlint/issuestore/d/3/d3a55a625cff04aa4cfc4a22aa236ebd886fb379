@@ -1,0 +1,48 @@
+
+l	java:S116"RRename this field "node_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¿öŠùÿÿÿÿ
+n	java:S116"YRename this field "num_interfaces" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Î÷
+r	java:S116!"]Rename this field "control_class_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(š®£Â
+{	java:S116""aRename this field "application_class_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñœ®øÿÿÿÿ
+k	java:S116#"VRename this field "control_alg" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ¶ìî
+l	java:S116$"RRename this field "app_alg" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡²›Úùÿÿÿÿ
+u	java:S116."[Rename this field "next_app_timeout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğğıÿÿÿÿÿ
+y	java:S116/"_Rename this field "next_control_timeout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡´çéùÿÿÿÿ
+s	java:S1160"^Rename this field "next_app_clock_tick" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’À˜¦
+v	java:S1161"bRename this field "next_control_clock_tick" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÄĞ!
+u	java:S1163"`Rename this field "app_clock_tick_period" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùïêß
+~	java:S1164"dRename this field "control_clock_tick_period" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áË·İşÿÿÿÿ
+i	java:S1168"ORename this field "SENT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Ñèûÿÿÿÿÿ
+d	java:S1169"ORename this field "RECV" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’¦Èã
+d	java:S116:"ORename this field "DROP" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äˆ›„
+i	java:S116;"ORename this field "FORW" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏáöÑÿÿÿÿÿ
+s	java:S116="YRename this field "packet_counter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡à¥¡øÿÿÿÿ
+S	java:S106a"9Replace this use of System.out or System.err by a logger.(€™Âúøÿÿÿÿ
+S	java:S106r"9Replace this use of System.out or System.err by a logger.(âáùêúÿÿÿÿ
+O	java:S106Û"9Replace this use of System.out or System.err by a logger.(ñ‚‰
+d	java:S100ï"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÉ‡¡
+T	java:S106ù"9Replace this use of System.out or System.err by a logger.(ŞšÇøÿÿÿÿ
+i	java:S100‡"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï´ÃØúÿÿÿÿ
+N
+java:S1135‰"2Complete the task associated to this TODO comment.(³¡Ûúÿÿÿÿ
+O	java:S106–"9Replace this use of System.out or System.err by a logger.(–¦¤
+d	java:S100¯"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹éÏŒ
+7
+java:S2129°" Remove this "String" constructor(ÁÌÉ¼
+T	java:S106µ"9Replace this use of System.out or System.err by a logger.(øºÑûúÿÿÿÿ
+i	java:S100¿"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şè™úÿÿÿÿ
+O	java:S106Ç"9Replace this use of System.out or System.err by a logger.(•€£°
+O	java:S106Ì"9Replace this use of System.out or System.err by a logger.(•€£°
+R	java:S125Õ"<This block of commented-out lines of code should be removed.(ÀüÍ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(’ÒĞÆüÿÿÿÿ
+d	java:S100Š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ñò™
+T	java:S106‹"9Replace this use of System.out or System.err by a logger.(ì¸Íøÿÿÿÿ
+T	java:S106½"9Replace this use of System.out or System.err by a logger.(†ƒ©¨ÿÿÿÿÿ
+T	java:S106É"9Replace this use of System.out or System.err by a logger.(†ƒ©¨ÿÿÿÿÿ
+d	java:S100â"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½Ú±ç
+i	java:S100î"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ æ¿ıÿÿÿÿ
+f
+java:S1192ù"JDefine a constant instead of duplicating this literal "--> node " 7 times.(ŞšÇøÿÿÿÿ
+^
+java:S1192Ò"GDefine a constant instead of duplicating this literal " time " 5 times.(—øû”
+8
+java:S1643Ù"Use a StringBuilder instead.(â”Ï‹ıÿÿÿÿ

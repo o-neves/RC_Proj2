@@ -1,0 +1,12 @@
+
+œ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ˆ²šÎþÿÿÿÿ
+n
+java:S1450"SRemove the "args" field and declare it as a local variable in the relevant methods.(…òè¹üÿÿÿÿ
+6
+java:S2129-" Remove this "String" constructor(íš§Í
+S	java:S1061"9Replace this use of System.out or System.err by a logger.(ñòšäøÿÿÿÿ
+N	java:S1068"9Replace this use of System.out or System.err by a logger.(×›å 
+C
+java:S1068"(Remove this unused "args" private field.(…òè¹üÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Šœêžûÿÿÿÿ

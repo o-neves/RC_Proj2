@@ -1,0 +1,51 @@
+
+M
+java:S1135"2Complete the task associated to this TODO comment.(˜•ÂÔûÿÿÿÿ
+p	java:S116-"VRename this field "config_file" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ªô§üÿÿÿÿ
+i	java:S116/"TRename this field "tmp_nodes" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÝÚ½
+h	java:S1160"TRename this field "tmp_links" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•¡¯A
+n	java:S116:"TRename this field "stop_time" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘îçôøÿÿÿÿ
+S	java:S106F"9Replace this use of System.out or System.err by a logger.(ãæ‚„ùÿÿÿÿ
+S	java:S106a"9Replace this use of System.out or System.err by a logger.(³×–Åüÿÿÿÿ
+V	java:S125f"<This block of commented-out lines of code should be removed.(ª‹áÁøÿÿÿÿ
+S	java:S106l"9Replace this use of System.out or System.err by a logger.(ïù¯¯ûÿÿÿÿ
+i	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç×ÆÛùÿÿÿÿ
+n
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 38 to the 15 allowed.(Ç×ÆÛùÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(¾óÙ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(çž°£ýÿÿÿÿ
+T	java:S106ÿ"9Replace this use of System.out or System.err by a logger.(Ë•øøýÿÿÿÿ
+d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷ØÍƒ
+i
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 51 to the 15 allowed.(÷ØÍƒ
+W	java:S125ž"<This block of commented-out lines of code should be removed.(Ã†½ûÿÿÿÿ
+X
+java:S1126®"BReplace this if-then-else statement by a single method invocation.(Ã† 
+R	java:S125³"<This block of commented-out lines of code should be removed.(¾‡‹È
+O	java:S106ê"9Replace this use of System.out or System.err by a logger.(ýãàñ
+d	java:S100ø"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù±†š
+T	java:S106ù"9Replace this use of System.out or System.err by a logger.(ú‹²úÿÿÿÿ
+T	java:S106Ÿ"9Replace this use of System.out or System.err by a logger.(†ûøÅüÿÿÿÿ
+F
+java:S1197¨"*Move the array designators [] to the type.(¡þÏÖøÿÿÿÿ
+O	java:S106ª"9Replace this use of System.out or System.err by a logger.(¨ƒùÍ
+W	java:S125Ð"<This block of commented-out lines of code should be removed.(ÖÓìàüÿÿÿÿ
+W	java:S125ß"<This block of commented-out lines of code should be removed.(ÖÓìàüÿÿÿÿ
+W	java:S125ð"<This block of commented-out lines of code should be removed.(ÖÓìàüÿÿÿÿ
+W	java:S125ÿ"<This block of commented-out lines of code should be removed.(ÖÓìàüÿÿÿÿ
+i	java:S100Š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–’½¸þÿÿÿÿ
+O	java:S106Ž"9Replace this use of System.out or System.err by a logger.(ŠØ†è
+d	java:S100ž"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò‡„û
+T	java:S106¢"9Replace this use of System.out or System.err by a logger.(´ôúÀûÿÿÿÿ
+c	java:S100®"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õ„§[
+O	java:S106°"9Replace this use of System.out or System.err by a logger.(ÉÖ±é
+_
+java:S6208¨"CMerge the previous cases into this one using comma-separated label.(ŽÇü¹úÿÿÿÿ
+_
+java:S6208æ"CMerge the previous cases into this one using comma-separated label.(–À ¢üÿÿÿÿ
+K
+java:S1066·"/Merge this if statement with the enclosing one.(ÄãÞ·øÿÿÿÿ
+l	java:S117Ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿Ã›ˆþÿÿÿÿ
+l	java:S117Í"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó·ïêúÿÿÿÿ
+b
+java:S2095c"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(³¢¸ã
