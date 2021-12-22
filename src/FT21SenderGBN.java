@@ -56,7 +56,6 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
 
         state = State.BEGINNING;
         lastPacketSeqN = (int) Math.ceil(file.length() / (double) BlockSize);
-        System.out.println(lastPacketSeqN);
 
         lastPacketSent = -1;
         return 1;

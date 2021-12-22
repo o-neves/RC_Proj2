@@ -25,7 +25,7 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
 
     private File file;
     private RandomAccessFile raf;
-    private int BlockSize, windowSize, first = 0, lastC = 0;
+    private int BlockSize, windowSize, first = 0;
     private int nextPacketSeqN = 1, lastPacketSeqN;
 
     private State state;
@@ -87,7 +87,6 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
                 break;
             case UPLOADING:
                     if(sendAgain != -1) {
-                        //System.out.println(sendAgain);
                         super.sendPacket(now, RECEIVER, readDataPacket(file, sendAgain));
                         window.put(sendAgain, now);
                         sendAgain = -1;
@@ -119,7 +118,6 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
                     finishFlag = true;
                     state = State.FINISHING;
                 }
-
                 lastPacketSent = -1;
 
                 dataConfirmed.put(ack.cSeqN,now);
