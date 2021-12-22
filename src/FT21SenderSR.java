@@ -11,7 +11,7 @@ import ft21.FT21_DataPacket;
 import ft21.FT21_FinPacket;
 import ft21.FT21_UploadPacket;
 
-public class FT21SenderGBN extends FT21AbstractSenderApplication {
+public class FT21SenderSR extends FT21AbstractSenderApplication {
 
     private static final int TIMEOUT = 1000;
 
@@ -39,8 +39,8 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
     //seqN que não tiveram ack
     //Fim de timeout de um deles mandar apartir dele
 
-    public FT21SenderGBN() {
-        super(true, "FT21SenderGBN");
+    public FT21SenderSR() {
+        super(true, "FT21SenderSR");
     }
 
     public int initialise(int now, int node_id, Node nodeObj, String[] args) {
@@ -70,12 +70,13 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
             int time = entry.getValue();
             if(now - time > TIMEOUT) {nextPacketSeqN = seqN;
                 dataNotConfirmed.clear();
-            break;
+                break;
             }
         }
 
         if (state != State.FINISHED && canSend)
             sendNextPacket(now);
+
     }
 
     private void sendNextPacket(int now) {
