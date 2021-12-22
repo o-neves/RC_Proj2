@@ -36,10 +36,6 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
     private boolean finishFlag = false;
 
 
-    //windows size
-    //seqN que não tiveram ack
-    //Fim de timeout de um deles mandar apartir dele
-
     public FT21SenderSR() {
         super(true, "FT21SenderSR");
     }
