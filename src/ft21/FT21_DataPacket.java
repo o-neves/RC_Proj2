@@ -11,7 +11,8 @@ public class FT21_DataPacket extends FT21Packet {
 	public FT21_DataPacket(int seqN, byte[] data, int datalen) {
 		super(PacketType.DATA);
 		super.putInt(seqN);
-		super.putByte(NO_OPTIONAL_DATA_LEN);
+		super.putByte((byte)Integer.BYTES);
+		super.putInt(seqN);
 		super.putBytes(data, datalen);
 		this.seqN = seqN;
 		this.data = data;		

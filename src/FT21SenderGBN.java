@@ -1,7 +1,6 @@
 
 import java.io.File;
 import java.io.RandomAccessFile;
-import java.sql.Array;
 import java.util.*;
 
 import cnss.simulator.Node;
@@ -18,6 +17,7 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
     static int RECEIVER = 1;
 
     enum State {
+
         BEGINNING, UPLOADING, FINISHING, FINISHED
     };
 
@@ -31,8 +31,9 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
 
     private State state;
     private int lastPacketSent;
+    private boolean finishFlag = false;
 
-    private Map<Integer,Integer> dataNotConfirmed;
+    private Map<Integer,Integer> window;
 
 
     //windows size
@@ -46,7 +47,7 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
     public int initialise(int now, int node_id, Node nodeObj, String[] args) {
         super.initialise(now, node_id, nodeObj, args);
 
-        dataNotConfirmed = new TreeMap<>();
+        window = new TreeMap<>();
 
         raf = null;
         file = new File(args[0]);
@@ -62,20 +63,21 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
     }
 
     public void on_clock_tick(int now) {
-        boolean canSend = dataNotConfirmed.size() < windowSize || lastPacketSeqN > nextPacketSeqN;
+        boolean canSend = (window.size() < windowSize) && (lastPacketSeqN >= nextPacketSeqN);
 
-
-        for (Map.Entry<Integer, Integer> entry : dataNotConfirmed.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : window.entrySet()) {
             int seqN = entry.getKey();
             int time = entry.getValue();
             if(now - time > TIMEOUT) {nextPacketSeqN = seqN;
-                dataNotConfirmed.clear();
+                window.clear();
             break;
             }
         }
 
-        if (state != State.FINISHED && canSend)
+        if (state != State.FINISHED && (canSend || finishFlag)){
             sendNextPacket(now);
+            finishFlag = false;
+        }
     }
 
     private void sendNextPacket(int now) {
@@ -85,9 +87,8 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
                 break;
             case UPLOADING:
                 super.sendPacket(now, RECEIVER, readDataPacket(file, nextPacketSeqN));
-                dataNotConfirmed.put(nextPacketSeqN,now);
+                window.put(nextPacketSeqN,now);
                 nextPacketSeqN++;
-
                 break;
             case FINISHING:
                 super.sendPacket(now, RECEIVER, new FT21_FinPacket(nextPacketSeqN));
@@ -105,13 +106,16 @@ public class FT21SenderGBN extends FT21AbstractSenderApplication {
                 state = State.UPLOADING;
             case UPLOADING:
 
-                if (nextPacketSeqN > lastPacketSeqN)
+                if (ack.cSeqN == lastPacketSeqN){
                     state = State.FINISHING;
+                    finishFlag = true;
+                }
+
                 lastPacketSent = -1;
 
-                for (Map.Entry<Integer, Integer> e : new LinkedHashMap<Integer, Integer>(dataNotConfirmed).entrySet()){
+                for (Map.Entry<Integer, Integer> e : new LinkedHashMap<Integer, Integer>(window).entrySet()){
 
-                    if(e.getKey() <= ack.cSeqN) dataNotConfirmed.remove(e.getKey());
+                    if(e.getKey() <= ack.cSeqN) window.remove(e.getKey());
                 }
 
                 break;

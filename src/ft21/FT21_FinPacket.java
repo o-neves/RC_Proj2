@@ -6,7 +6,8 @@ public class FT21_FinPacket extends FT21Packet {
 	public FT21_FinPacket(int seqN) {
 		super(PacketType.FIN);
 		super.putInt( seqN );
-		super.putByte( NO_OPTIONAL_DATA_LEN );
+		super.putByte((byte)Integer.BYTES);
+		super.putInt(seqN);
 		this.seqN = seqN;
 	}
 	

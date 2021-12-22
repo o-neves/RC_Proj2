@@ -2,6 +2,7 @@ package ft21;
 
 public class FT21_AckPacket extends FT21Packet {
 	public final int cSeqN;
+	public final int lastSeqN;
 	public final boolean outsideWindow;
 	
 	FT21_AckPacket(byte[] bytes) {
@@ -9,6 +10,7 @@ public class FT21_AckPacket extends FT21Packet {
 		int seqN = super.getInt();
 		this.cSeqN = Math.abs( seqN );
 		this.outsideWindow = seqN < 0;
+		this.lastSeqN = this.getInt();
 		
 		// decode optional fields here...
 	}

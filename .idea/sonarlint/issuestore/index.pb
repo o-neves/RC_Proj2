@@ -1,16 +1,8 @@
 
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-M
-src/ft21/FT21_DataPacket.java,0\e\0ebada1c6908b192feaf9d698c9f1c82cf01dc59
 N
 src/ft21/FT21_ErrorPacket.java,d\b\db7a8f8d9fbeab91cebafd2d77b02ace8f6305ba
-L
-src/ft21/FT21_FinPacket.java,1\9\19f40d25ecf16d9c2dcd4c6a081a064c8dc00897
-L
-src/ft21/FT21_AckPacket.java,8\0\804fe4951aa177b14220dcefadb24ccc76f1dc0c
-H
-src/ft21/FT21Packet.java,4\0\404e3430a2acb002ec391f7b53a9319ed6256df1
 ^
 .src/cnss/lib/AbstractApplicationAlgorithm.java,6\7\677de94aff756397a68484cd4c14f9c4e98d8adb
 U

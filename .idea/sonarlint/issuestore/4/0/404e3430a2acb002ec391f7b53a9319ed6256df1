@@ -1,8 +1,0 @@
-
-z
-java:S3008"_Rename this field "NO_OPTIONAL_DATA_LEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”õ÷Éüÿÿÿÿ
-h
-java:S2786	"RRemove this redundant "static" qualifier; nested enum types are implicitly static.(ÿâœö
-7
-java:S1116"Remove this empty statement.(ôŸŽìúÿÿÿÿ
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ä­õØ

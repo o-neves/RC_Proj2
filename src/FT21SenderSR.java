@@ -1,7 +1,6 @@
 
 import java.io.File;
 import java.io.RandomAccessFile;
-import java.sql.Array;
 import java.util.*;
 
 import cnss.simulator.Node;
@@ -26,13 +25,15 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
 
     private File file;
     private RandomAccessFile raf;
-    private int BlockSize, windowSize;
+    private int BlockSize, windowSize, first = 0, lastC = 0;
     private int nextPacketSeqN = 1, lastPacketSeqN;
 
     private State state;
-    private int lastPacketSent;
+    private int lastPacketSent, sendAgain = -1;
 
-    private Map<Integer,Integer> dataNotConfirmed;
+    private TreeMap<Integer,Integer> window, dataConfirmed;
+    private boolean resendingFlag = false;
+    private boolean finishFlag = false;
 
 
     //windows size
@@ -46,7 +47,8 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
     public int initialise(int now, int node_id, Node nodeObj, String[] args) {
         super.initialise(now, node_id, nodeObj, args);
 
-        dataNotConfirmed = new TreeMap<>();
+        window = new TreeMap<>();
+        dataConfirmed = new TreeMap<>();
 
         raf = null;
         file = new File(args[0]);
@@ -55,27 +57,30 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
 
         state = State.BEGINNING;
         lastPacketSeqN = (int) Math.ceil(file.length() / (double) BlockSize);
-        System.out.println(lastPacketSeqN);
 
         lastPacketSent = -1;
         return 1;
     }
 
     public void on_clock_tick(int now) {
-        boolean canSend = dataNotConfirmed.size() < windowSize || lastPacketSeqN > nextPacketSeqN;
+        boolean canSend = (window.size() < windowSize) && (lastPacketSeqN >= nextPacketSeqN);
+        resendingFlag = false;
 
-
-        for (Map.Entry<Integer, Integer> entry : dataNotConfirmed.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : window.entrySet()) {
             int seqN = entry.getKey();
             int time = entry.getValue();
-            if(now - time > TIMEOUT) {nextPacketSeqN = seqN;
-                dataNotConfirmed.clear();
+            if(now - time > TIMEOUT && !dataConfirmed.containsKey(seqN)) {
+                sendAgain = seqN;
+                resendingFlag = true;
                 break;
             }
         }
 
-        if (state != State.FINISHED && canSend)
+        if (state != State.FINISHED && (canSend || resendingFlag || finishFlag)) {
+            resendingFlag = false;
+            finishFlag = false;
             sendNextPacket(now);
+        }
 
     }
 
@@ -85,9 +90,16 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
                 super.sendPacket(now, RECEIVER, new FT21_UploadPacket(file.getName()));
                 break;
             case UPLOADING:
-                super.sendPacket(now, RECEIVER, readDataPacket(file, nextPacketSeqN));
-                dataNotConfirmed.put(nextPacketSeqN,now);
-                nextPacketSeqN++;
+                    if(sendAgain != -1) {
+                        //System.out.println(sendAgain);
+                        super.sendPacket(now, RECEIVER, readDataPacket(file, sendAgain));
+                        window.put(sendAgain, now);
+                        sendAgain = -1;
+                    }else {
+                        super.sendPacket(now, RECEIVER, readDataPacket(file, nextPacketSeqN));
+                        window.put(nextPacketSeqN, now);
+                        nextPacketSeqN++;
+                    }
 
                 break;
             case FINISHING:
@@ -106,13 +118,29 @@ public class FT21SenderSR extends FT21AbstractSenderApplication {
                 state = State.UPLOADING;
             case UPLOADING:
 
-                if (nextPacketSeqN > lastPacketSeqN)
+
+                if (nextPacketSeqN > lastPacketSeqN && ack.cSeqN == lastPacketSeqN){
+                    finishFlag = true;
                     state = State.FINISHING;
+                }
+
                 lastPacketSent = -1;
 
-                for (Map.Entry<Integer, Integer> e : new LinkedHashMap<Integer, Integer>(dataNotConfirmed).entrySet()){
+                dataConfirmed.put(ack.cSeqN,now);
 
-                    if(e.getKey() <= ack.cSeqN) dataNotConfirmed.remove(e.getKey());
+
+                if(!window.isEmpty()) {
+
+                        dataConfirmed.put(ack.lastSeqN, now);
+
+                        for (Map.Entry<Integer, Integer> e : new LinkedHashMap<Integer, Integer>(window).entrySet()) {
+                            if (e.getKey() <= ack.cSeqN) dataConfirmed.put(e.getKey(), now);
+                        }
+
+                        for (Map.Entry<Integer, Integer> e : new LinkedHashMap<Integer, Integer>(dataConfirmed).entrySet()) {
+                            first = window.firstKey();
+                            if (e.getKey() == first) window.remove(e.getKey());
+                        }
                 }
 
                 break;

@@ -5,7 +5,8 @@ public class FT21_UploadPacket extends FT21Packet {
 	
 	public FT21_UploadPacket(String filename) {
 		super(PacketType.UPLOAD);
-		super.putByte(NO_OPTIONAL_DATA_LEN);
+		super.putByte((byte)Integer.BYTES);
+		super.putInt(0);
 		this.filename = filename;
 		super.putString(filename);
 	}
