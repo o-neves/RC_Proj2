@@ -100,7 +100,7 @@ public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
 
     @Override
     public void on_receive_ack(int now, int client, FT21_AckPacket ack) {
-        double rtt_i, rtt_average =1000, deviation_average=0;
+        double rtt_i, rtt_average =80, deviation_average=0;
 
         switch (state) {
             case BEGINNING:
