@@ -12,7 +12,6 @@ import ft21.FT21_FinPacket;
 import ft21.FT21_UploadPacket;
 
 public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
-    //private static final int TIMEOUT = 1000;
     private double rtt = 0;
     private double timeOut = 1000;
 
@@ -110,20 +109,14 @@ public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
                 if (nextPacketSeqN > lastPacketSeqN)
                     state = FT21SenderGBN.State.FINISHING;
                 lastPacketSent = -1;
-                System.out.println("*********");
                 for (Map.Entry<Integer, Integer> e : new LinkedHashMap<Integer, Integer>(dataNotConfirmed).entrySet()){
-                    //ir buscar o now deste moemento e subtrair ao momento em que foi adicionado
-                    //e.getValue() é o moemntomme que foi add
-
+                    //e.getValue() é o momento em que o pack foi adicionado
                     if(e.getKey() == ack.cSeqN){
                         rtt = now - e.getValue();
                         timeOut = timeOut * 0.875 + rtt * 0.125;
                     }
-
-
                     if(e.getKey() <= ack.cSeqN) dataNotConfirmed.remove(e.getKey());
                 }
-                System.out.println("########");
                 break;
             case FINISHING:
                 super.log(now, "All Done. Transfer complete...");
