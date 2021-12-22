@@ -12,7 +12,6 @@ import ft21.FT21_FinPacket;
 import ft21.FT21_UploadPacket;
 
 public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
-    private double rtt = 0;
     private double timeOut = 1000;
 
 
@@ -101,6 +100,8 @@ public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
 
     @Override
     public void on_receive_ack(int now, int client, FT21_AckPacket ack) {
+        double rtt_i, rtt_average =1000, deviation_average=0;
+
         switch (state) {
             case BEGINNING:
                 state = FT21SenderGBN.State.UPLOADING;
@@ -110,10 +111,11 @@ public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
                     state = FT21SenderGBN.State.FINISHING;
                 lastPacketSent = -1;
                 for (Map.Entry<Integer, Integer> e : new LinkedHashMap<Integer, Integer>(dataNotConfirmed).entrySet()){
-                    //e.getValue() é o momento em que o pack foi adicionado
                     if(e.getKey() == ack.cSeqN){
-                        rtt = now - e.getValue();
-                        timeOut = timeOut * 0.875 + rtt * 0.125;
+                        rtt_i = now - e.getValue();
+                        rtt_average = rtt_average * 0.875 + rtt_i * 0.125;
+                        deviation_average = 0.75 * deviation_average + 0.25 * Math.abs( rtt_i - rtt_average );
+                        timeOut = rtt_average + 4 * deviation_average;
                     }
                     if(e.getKey() <= ack.cSeqN) dataNotConfirmed.remove(e.getKey());
                 }
