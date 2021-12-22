@@ -31,11 +31,6 @@ public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
 
     private Map<Integer,Integer> dataNotConfirmed;
 
-
-    //windows size
-    //seqN que não tiveram ack
-    //Fim de timeout de um deles mandar apartir dele
-
     public FT21SenderGBN_DT() {
         super(true, "FT21SenderGBN");
     }
