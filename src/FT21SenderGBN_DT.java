@@ -12,7 +12,10 @@ import ft21.FT21_FinPacket;
 import ft21.FT21_UploadPacket;
 
 public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
-    private static final int TIMEOUT = 1000;
+    //private static final int TIMEOUT = 1000;
+    private double rtt = 0;
+    private double timeOut = 1000;
+
 
     static int RECEIVER = 1;
     enum State {
@@ -39,6 +42,7 @@ public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
         super(true, "FT21SenderGBN");
     }
 
+
     public int initialise(int now, int node_id, Node nodeObj, String[] args) {
         super.initialise(now, node_id, nodeObj, args);
 
@@ -64,7 +68,9 @@ public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
         for (Map.Entry<Integer, Integer> entry : dataNotConfirmed.entrySet()) {
             int seqN = entry.getKey();
             int time = entry.getValue();
-            if(now - time > TIMEOUT) {nextPacketSeqN = seqN;
+            if(now - time > timeOut) {
+                //now é tempo atual e time é o momento em que foi enviado
+                nextPacketSeqN = seqN;
                 dataNotConfirmed.clear();
                 break;
             }
@@ -104,12 +110,20 @@ public class FT21SenderGBN_DT extends FT21AbstractSenderApplication {
                 if (nextPacketSeqN > lastPacketSeqN)
                     state = FT21SenderGBN.State.FINISHING;
                 lastPacketSent = -1;
-
+                System.out.println("*********");
                 for (Map.Entry<Integer, Integer> e : new LinkedHashMap<Integer, Integer>(dataNotConfirmed).entrySet()){
+                    //ir buscar o now deste moemento e subtrair ao momento em que foi adicionado
+                    //e.getValue() é o moemntomme que foi add
+
+                    if(e.getKey() == ack.cSeqN){
+                        rtt = now - e.getValue();
+                        timeOut = timeOut * 0.875 + rtt * 0.125;
+                    }
+
 
                     if(e.getKey() <= ack.cSeqN) dataNotConfirmed.remove(e.getKey());
                 }
-
+                System.out.println("########");
                 break;
             case FINISHING:
                 super.log(now, "All Done. Transfer complete...");
